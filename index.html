@@ -19,19 +19,19 @@
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    import starsTexture from 'img/stars.jpg';
-    import sunTexture from 'img/sun.jpg';
-    import mercuryTexture from 'img/mercury.jpg';
-    import venusTexture from 'img/venus.jpg';
-    import earthTexture from 'img/earth.jpg';
-    import marsTexture from 'img/mars.jpg';
-    import jupiterTexture from 'img/jupiter.jpg';
-    import saturnTexture from 'img/saturn.jpg';
-    import saturnRingTexture from 'img/saturn ring.png';
-    import uranusTexture from 'img/uranus.jpg';
-    import uranusRingTexture from 'img/uranus ring.jpg';
-    import neptuneTexture from 'img/neptune.jpg';
-    import plutoTexture from 'img/pluto.jpg';
+    const starsTexture = textureLoader.load('img/stars.jpg');
+    const sunTexture = textureLoader.load('img/sun.jpg');
+    const mercuryTexture = textureLoader.load('img/mercury.jpg');
+    const venusTexture = textureLoader.load('img/venus.jpg');
+    const earthTexture = textureLoader.load('img/earth.jpg');
+    const marsTexture = textureLoader.load('img/mars.jpg');
+    const jupiterTexture = textureLoader.load('img/jupiter.jpg')
+    const saturnTexture = textureLoader.load('img/saturn.jpg');
+    const saturnRingTexture = textureLoader.load('img/saturn ring.jpg');
+    const uranusTexture = textureLoader.load('img/uranus.jpg');
+    const uranusRingTexture = textureLoader.load('img/uranus ring.jpg');
+    const neptuneTexture = textureLoader.load('img/neptune.jpg');
+    const plutoTexture = textureLoader.load('img/pluto.jpg');
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(

@@ -2,55 +2,98 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <title>solar system</title>
-
+  <title>Sistema Solar</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+  </style>
   <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+      }
     }
-  }
   </script>
 </head>
-<body style="margin:0; overflow:hidden;">
+<body>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(3, 3, 5);
+    const textures = [];
+    const textureLoader = new THREE.TextureLoader();
+    const cubeTextureLoader = new THREE.CubeTextureLoader();
+
+    const starsTexture = cubeTextureLoader.load([
+      'https://i.imgur.com/gLGNnkp.jpeg',
+      'https://i.imgur.com/gLGNnkp.jpeg',
+      'https://i.imgur.com/gLGNnkp.jpeg',
+      'https://i.imgur.com/gLGNnkp.jpeg',
+      'https://i.imgur.com/gLGNnkp.jpeg',
+      'https://i.imgur.com/gLGNnkp.jpeg'
+    ]);
+
+    const sunTexture = textureLoader.load('https://i.imgur.com/zU5oOjt.jpeg');
+    const mercuryTexture = textureLoader.load('https://i.imgur.com/TJO6Te3.jpeg');
+    const venusTexture = textureLoader.load('https://i.imgur.com/xeaPIjD.jpeg');
+    const earthTexture = textureLoader.load('https://i.imgur.com/vflkkqF.jpeg');
+    const marsTexture = textureLoader.load('https://i.imgur.com/U6upjrv.jpeg');
+    const jupiterTexture = textureLoader.load('https://i.imgur.com/4APG00k.jpeg');
+    const saturnTexture = textureLoader.load('https://i.imgur.com/YKw0m4x.jpeg');
+    const saturnRingTexture = textureLoader.load('https://i.imgur.com/u0muMiZ.png');
+    const uranusTexture = textureLoader.load('https://i.imgur.com/olpgGMo.jpeg');
+    const uranusRingTexture = textureLoader.load('https://i.imgur.com/F1y9Ve4.png');
+    const neptuneTexture = textureLoader.load('https://i.imgur.com/pycXdLM.jpeg');
+    const plutoTexture = textureLoader.load('https://i.imgur.com/YNsmmHV.jpeg');
+
+    textures.push(
+      starsTexture,
+      sunTexture,
+      mercuryTexture,
+      venusTexture,
+      earthTexture,
+      marsTexture,
+      jupiterTexture,
+      saturnTexture,
+      saturnRingTexture,
+      uranusTexture,
+      uranusRingTexture,
+      neptuneTexture,
+      plutoTexture
+    );
+
+    textures.forEach(function(texture) {
+      if (texture) texture.colorSpace = THREE.SRGBColorSpace;
+    });
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+
+    const orbit = new OrbitControls(camera, renderer.domElement);
+    camera.position.set(-90, 140, 140);
+    orbit.update();
+
+    scene.background = starsTexture;
 
     const ambientLight = new THREE.AmbientLight(0x333333);
     scene.add(ambientLight);
 
-    const cubeTexture = new THREE.CubeTextureLoader().load([
-      'img/stars.jpg',
-      'img/stars.jpg',
-      'img/stars.jpg',
-      'img/stars.jpg',
-      'img/stars.jpg',
-      'img/stars.jpg'
-    ]);
-    scene.background = cubeTexture;
-
     function animate() {
-      requestAnimationFrame(animate);
-      controls.update();
       renderer.render(scene, camera);
     }
 
-    animate();
+    renderer.setAnimationLoop(animate);
 
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', function () {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);

@@ -56,15 +56,16 @@
       renderer.render(scene, camera);
     }
 
-    const cubeTextureLoader = new THREE.CubeTextureLoader();
-    scene.background = cubeTextureLoader.load([
-      starsTexture,
-      starsTexture,
-      starsTexture,
-      starsTexture,
-      starsTexture,
-      starsTexture
-    ])
+    const cubeTexture = new THREE.CubeTextureLoader().load([
+  'img/stars.jpg', // posX
+  'img/stars.jpg', // negX
+  'img/stars.jpg', // posY
+  'img/stars.jpg', // negY
+  'img/stars.jpg', // posZ
+  'img/stars.jpg'  // negZ
+]);
+scene.background = cubeTexture;
+
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);

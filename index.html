@@ -52,7 +52,7 @@
     const ambientLight = new THREE.AmbientLight(0x333333);
     scene.add(ambientLight);
 
-    scene.background = textureLoader.load(starsTexture);
+    scene.background = starsTexture;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);

@@ -5,11 +5,12 @@
   <title>sistema solar 3d</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/x-icon" href="/img/stars(1).jpg">
 <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Teko:wght@300..700&display=swap" rel="stylesheet">
   <style>
     body { margin: 0; overflow: hidden;}
     li {
-      width: 400px;
+      width: 420px;
       height: 200px;
       background-color: blanchedalmond;
       border-radius: 10px;
@@ -105,7 +106,7 @@ h1 {
         <button class="neptune" id="neptune">neptune</button>
         <button class="venus" id="venus">venus</button>
         <button class="mars" id="mars">mars</button>
-        <button class="saturn id="saturn">saturn</button>
+        <button class="saturn" id="saturn">saturn</button>
       </li>
     </ul>
   </nav>
@@ -182,6 +183,9 @@ h1 {
     orbit.update();
 
     scene.background = starsTexture;
+
+    scene.fog = new THREE.FogExp2(0x000000, 0.0015);
+
 
     const ambientLight = new THREE.AmbientLight(0x333333, 1);
     scene.add(ambientLight);
@@ -307,6 +311,10 @@ const pluto = createPlanet(2.8, plutoTexture, 216);
     name: "Netuno",
     description: "Netuno é o oitavo e mais distante planeta do Sistema Solar, conhecido por sua coloração azul e ventos extremamente fortes."
   },
+  mars: {
+    name: "Marte",
+    description: "Marte, conhecido como o Planeta Vermelho, é o quarto planeta a partir do Sol e um dos mais estudados devido à sua proximidade com a Terra e à possibilidade de ter abrigado vida em algum momento. É um planeta rochoso, com uma atmosfera rarefeita e temperaturas extremamente frias."
+  },
 };
 
 const planetInfo = document.getElementById('planet-info');
@@ -327,6 +335,7 @@ const clickableObjects = [
   { object: saturn.mesh, key: "saturn" },
   { object: pluto.mesh, key: "pluto" },
   { object: uranus.mesh, key: "uranus" },
+  { object: mars.mesh, key: "mars" },
 ];
 
 
@@ -437,6 +446,16 @@ saturnui.addEventListener('click', function () {
     saturn.mesh.position.z + 10
   );
   orbit.target.copy(saturn.mesh.position);
+});
+
+const marsui = document.getElementById('mars');
+marsui.addEventListener('click', function () {
+  camera.position.set(
+    mars.mesh.position.x + 10,
+    mars.mesh.position.y + 10,
+    mars.mesh.position.z + 10
+  );
+  orbit.target.copy(mars.mesh.position);
 });
 
     renderer.setAnimationLoop(animate);

@@ -17,6 +17,27 @@
       width: 100px;
       height: 100px;
     }
+
+    canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+nav, img {
+  position: relative;
+  z-index: 1;
+}
+
+nav {
+  pointer-events: none; 
+}
+
+nav * {
+  pointer-events: auto; 
+}
+
   </style>
   <script type="importmap">
     {
@@ -28,6 +49,7 @@
   </script>
 </head>
 <body>
+  <canvas class="ui"></canvas>
   <a href="https://pt.wikipedia.org/wiki/Espa%C3%A7o_sideral">
           <img src="img/Wikipedia-logo-v2.svg.png" alt="wikipedia">
         </a>

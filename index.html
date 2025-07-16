@@ -288,46 +288,42 @@ const pluto = createPlanet(2.8, plutoTexture, 216);
     name: "Netuno",
     description: "Netuno é o oitavo e mais distante planeta do Sistema Solar, conhecido por sua coloração azul e ventos extremamente fortes."
   },
-  // Adicione dados para os outros planetas seguindo o mesmo padrão
 };
 
-// Elementos do DOM
 const planetInfo = document.getElementById('planet-info');
 const planetName = document.getElementById('planet-name');
 const planetDescription = document.getElementById('planet-description');
 
-// Raycaster para detecção de cliques
+
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-// Lista de objetos clicáveis
 const clickableObjects = [
   { object: sun, key: "sun" },
   { object: mercury.mesh, key: "mercury" },
   { object: venus.mesh, key: "venus" },
   { object: earth.mesh, key: "earth" },
-  // Adicione os outros planetas aqui
+  { object: jupiter.mesh, key: "jupiter" },
+  { object: neptune.mesh, key: "neptune" },
+  { object: saturn.mesh, key: "saturn" },
+  { object: pluto.mesh, key: "pluto" },
 ];
 
-// Evento de clique
+
 renderer.domElement.addEventListener('click', (event) => {
-  // Calcular posição do mouse
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
   
-  // Configurar raycaster
   raycaster.setFromCamera(mouse, camera);
   const intersects = raycaster.intersectObjects(
     clickableObjects.map(item => item.object)
   );
   
-  // Verificar se houve colisão com algum planeta
   if (intersects.length > 0) {
     const clickedObject = intersects[0].object;
     const planet = clickableObjects.find(item => item.object === clickedObject);
     
     if (planet && planetData[planet.key]) {
-      // Exibir informações
       planetName.textContent = planetData[planet.key].name;
       planetDescription.textContent = planetData[planet.key].description;
       planetInfo.style.display = 'block';
@@ -335,12 +331,12 @@ renderer.domElement.addEventListener('click', (event) => {
   }
 });
 
-// Fechar painel
+
 document.getElementById('close-info').addEventListener('click', () => {
   planetInfo.style.display = 'none';
 });
 
-// Highlight ao passar o mouse
+
 renderer.domElement.addEventListener('mousemove', (event) => {
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -350,7 +346,6 @@ renderer.domElement.addEventListener('mousemove', (event) => {
     clickableObjects.map(item => item.object)
   );
   
-  // Alterar cursor
   document.body.style.cursor = intersects.length > 0 ? 'pointer' : 'default';
 });
 

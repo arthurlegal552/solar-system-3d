@@ -9,7 +9,7 @@
   <style>
     body { margin: 0; overflow: hidden;}
     li {
-      width: 340px;
+      width: 400px;
       height: 200px;
       background-color: blanchedalmond;
       border-radius: 10px;
@@ -98,6 +98,14 @@ h1 {
         <h1>the solar system</h1>
         <h2>solar system made with threejs</h2>
         <h3>note:this is in an unreal proportion dont try to compare to real scales</h3>
+        <button class="earth" id="earth">earth</button>
+        <button class="jupiter" id="jupiter">jupiter</button>
+        <button class="pluto" id="pluto">pluto</button>
+        <button class="uranus" id="uranus">uranus</button>
+        <button class="neptune" id="neptune">neptune</button>
+        <button class="venus" id="venus">venus</button>
+        <button class="mars" id="mars">mars</button>
+        <button class="saturn id="saturn">saturn</button>
       </li>
     </ul>
   </nav>
@@ -359,6 +367,76 @@ renderer.domElement.addEventListener('mousemove', (event) => {
   );
   
   document.body.style.cursor = intersects.length > 0 ? 'pointer' : 'default';
+});
+
+const earthui = document.getElementById('earth');
+earthui.addEventListener('click', function () {
+  camera.position.set(
+    earth.mesh.position.x + 10,
+    earth.mesh.position.y + 10,
+    earth.mesh.position.z + 10
+  );
+  orbit.target.copy(earth.mesh.position);
+});
+
+const jupiterui = document.getElementById('jupiter');
+jupiterui.addEventListener('click', function () {
+  camera.position.set(
+    jupiter.mesh.position.x + 10,
+    jupiter.mesh.position.y + 10,
+    jupiter.mesh.position.z + 10
+  );
+  orbit.target.copy(jupiter.mesh.position);
+});
+
+const plutoui = document.getElementById('pluto');
+plutoui.addEventListener('click', function () {
+  camera.position.set(
+    pluto.mesh.position.x + 10,
+    pluto.mesh.position.y + 10,
+    pluto.mesh.position.z + 10
+  );
+  orbit.target.copy(pluto.mesh.position);
+});
+
+const uranusui = document.getElementById('uranus');
+uranusui.addEventListener('click', function () {
+  camera.position.set(
+    uranus.mesh.position.x + 10,
+    uranus.mesh.position.y + 10,
+    uranus.mesh.position.z + 10
+  );
+  orbit.target.copy(uranus.mesh.position);
+});
+
+const venusui = document.getElementById('venus');
+venusui.addEventListener('click', function () {
+  camera.position.set(
+    venus.mesh.position.x + 10,
+    venus.mesh.position.y + 10,
+    venus.mesh.position.z + 10
+  );
+  orbit.target.copy(venus.mesh.position);
+});
+
+const neptuneui = document.getElementById('neptune');
+neptuneui.addEventListener('click', function () {
+  camera.position.set(
+    neptune.mesh.position.x + 10,
+    neptune.mesh.position.y + 10,
+    neptune.mesh.position.z + 10
+  );
+  orbit.target.copy(neptune.mesh.position);
+});
+
+const saturnui = document.getElementById('saturn');
+saturnui.addEventListener('click', function () {
+  camera.position.set(
+    saturn.mesh.position.x + 10,
+    saturn.mesh.position.y + 10,
+    saturn.mesh.position.z + 10
+  );
+  orbit.target.copy(saturn.mesh.position);
 });
 
     renderer.setAnimationLoop(animate);

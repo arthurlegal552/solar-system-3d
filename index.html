@@ -93,6 +93,9 @@ h1 {
   <a href="https://pt.wikipedia.org/wiki/Sistema_Solar">
           <img src="img/Wikipedia-logo-v2.svg.png" alt="wikipedia">
         </a>
+
+        <button id="toggle-nav" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">hide menu</button>
+
   <nav>
     <ul>
       <li>
@@ -457,6 +460,17 @@ marsui.addEventListener('click', function () {
   );
   orbit.target.copy(mars.mesh.position);
 });
+
+const toggleNavButton = document.getElementById('toggle-nav');
+const nav = document.querySelector('nav');
+
+let navVisible = true;
+
+toggleNavButton.addEventListener('click', () => {
+  navVisible = !navVisible;
+  nav.style.display = navVisible ? 'block' : 'none';
+});
+
 
     renderer.setAnimationLoop(animate);
 
